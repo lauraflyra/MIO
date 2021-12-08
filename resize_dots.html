@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html lang="en">
+<meta charset="utf-8">
+
+<head>
+  <script src="/home/lauraflyra/Documents/SHK/ManualInhibitionOnline/resize_dots.js" type="text/javascript"></script>
+  <link href="/home/lauraflyra/Documents/SHK/ManualInhibitionOnline/credit_card_styles.css" rel="stylesheet" type="text/css">    
+    
+</head>
+
+<body>
+  <script>
+    //beter pix2dva
+    //plot diff conversions from cm to dva, 0-100cm
+
+    let dist_screen_cm = 22.5; //in cm // we assume a viewing distance of 20-25 cm 
+    let css_pix = 0.016; //approximate size of css pixel in cm
+
+    //In general, the size in dva of the previous objects in pixels is calculated by the general procedure:
+    // object_size_cm = object_size_pix * css_pix
+    // object_size_dva = cm2dva(object_size_cm, dist_screen_cm)
+
+    let original_visible_dot_pix = 50; 
+    let original_visible_dot_cm = original_visible_dot_pix*css_pix;
+
+    let original_visible_dot_dva = Math.round(cm2dva(original_visible_dot_cm, dist_screen_cm));
+    //For the original experiment, the Invisible Dots were 6 times bigger in diameter than the visible dots (300px width). 
+    let original_invisible_dot_dva = original_visible_dot_dva*6;
+
+    //or just
+
+    let original_pix_in_dva = cm2dva(css_pix, dist_screen_cm); //how much one pixel (size css_pix in centimeters) is in dva, given the distance to the screen in centimeters
+    // object_size_dva = object_size_pix*original_pix_in_dva
+
+
+    let original_serial_dva = []; //displacement of the dots in the serial task now in dvas
+    let original_serial_pix = [250, 150, 50, -50, -150, -250]; //positions of dots in the original serial task in pixels
+    for(let i=0; i<original_serial_pix.length; i++){
+        original_serial_dva.push(Math.round(original_serial_pix[i]*original_pix_in_dva));
+    }
+
+    //centered around zero and twice the dot distance between center and center
+
+
+    //IS IT BETTER TO HAVE SIZE_DVA = OBJ_SIZE_PIX*ORIGINAL_PIX_IN_DVA? And then round the number
+    //OR: have a baseline,i.e, the original visible dot is circa 2dva, and stablish all multiples of that as multiples of 2dva?
+
+    // Should I take the original displacements as a function of the visible dots size? 
+    // Should I calculate their size in dva by using that you estimated a distance of 20-25 cm to the screen and then the size of the css pixel? Or should I use the calculated pixel size by the 
+    //credit card test and the distance from the blind spot to calculate the sizes in dva?
+    //FOR NOW: get size of one css pixel in dva (at screen distance 22.5) and translate each position to dva. Rounding the numbers in the end.
+
+
+    let original_jumps_pix = [250,150,-150,-250]; //the dot always jumps "its size"
+    //jump outward always for 200pix -- look how much dva that was and try to keep it fixed
+
+    let original_jumps_dva = [];
+    for(let i=0; i<original_jumps_pix.length; i++){
+        original_jumps_dva.push(Math.round(original_jumps_pix[i]*original_pix_in_dva));
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //now given that we have the sizes in dva of the original objects, lets see how big they need to be when we change the distance, and 
+    //now considering that we have the relation from pixel in centimeters given by the credit card test.
+    
+    
+    //GET THIS DATA FROM THE CALLIBRATION PART OF THE CODE, THIS IS JUST AN EXAMPLE TO TEST IF IT MAKES SENSE!!!!!!
+    // let view_dist_cm = 22.5;
+    // let height_card_pix = 532;
+    // let width_card_pix = 349;
+
+    // let cm_pix = cm2pix(height_card_pix, width_card_pix);
+
+    // let updated_dot_pix = dva2pix(original_dot_dva, view_dist_cm,cm_pix ); //updated size of one visible dot in pixels given that we want the dot to have 2dva
+    // let updated_inv_dot_pix = dva2pix(original_invisible_dot_dva, view_dist_cm, cm_pix); //updated size of one invisible dot in pixels given that we want the dot to have 12dva
+
+
+
+
+
+
+    //NEXT STEPs: 
+    //0. Also rescale invisible dots to be 6 times bigger than visible ones. !DONE
+    //1. For the serial trial: scale the distance between the dots -- before the positions of both visible and invisible buttons were:
+    //[250, 150, 50, -50, -150, -250] -- first get how much this spacing is equivalent in dvas, than do the rescaling for different distances. !DONE?
+    //2. For the jump trial: also scale the jumps. !DONE?
+    //3. Get view_dist_cm, height_card_pix and width_card_pix from the callibration data -- PROBLEM: HOW TO READ THIS? IT'S NOT JUST INTEGRATING EVERYTHING INTO THE SAME HTML FILE!
+    //4. After calculating the desired sized, change styles.css and objects.js such that I readjust the stimulus sizes depending on the callibrated viewing distance. 
+
+   
+
+  </script>
+
+</body>
+</html>
+

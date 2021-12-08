@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Example taken from http://www.jspsych.org/tutorials/rt-task/ and adapted for the use with JATOS -->
+<html lang="en">
+<meta charset="utf-8">
+
+<head>
+  <script src="jspsych-6.0.4/jspsych.js" type="text/javascript"></script>
+  <script src="jspsych-6.0.4/plugins/jspsych-calibrate-credit-card.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/remote-calibrator@latest/lib/RemoteCalibrator.min.js"></script>
+  <link href="/home/lauraflyra/Documents/SHK/ManualInhibitionOnline/credit_card_styles.css" rel="stylesheet" type="text/css">
+    
+</head>
+
+<body>
+  <script type = module>
+
+
+  RemoteCalibrator.init({ id: 'session_022' });
+  RemoteCalibrator.measureDistance({}, data => {
+  console.log(`The viewing distance is ${data.value}cm.`)
+  });
+
+  </script>
+  <script>
+
+  str_rect = '<div class="box" id="rect"><div class="chip"></div><div class="number"><h>0000 0000 0000 0000</h></div></div>'
+
+  let adjust_credit = {rectangle: str_rect, type: "calibrate-credit-card"};
+
+  let timeline = [adjust_credit];
+
+  jsPsych.init({
+                timeline: timeline , // use the timeline to run the experiment
+                fullscreen: true, // run in fullscreen if possible
+                on_finish: function() {
+                    // once the code has run: save the results and call the next jatos component
+                    let resultJson = jsPsych.data.get().json();
+                    console.log(resultJson);
+                    //save to csv file and then read it back
+                    //jsPsych.data.get().localSave('csv','Handbewegungen_Testdaten.csv'); 
+                },
+            });
+
+
+  </script>
+
+</body>
+</html>
+

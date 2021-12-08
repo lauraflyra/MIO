@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type = "text/css">
+
+    .textContent div {
+    background-color:#dedede;
+
+    position:absolute;
+    display: inline;
+    top: 50%;
+    margin-left: 250px;
+    padding:10px;
+    resize:both;
+    overflow:auto;
+    }
+
+</style>
+<body>
+
+    <p>Click on the checkbox when you think  the credit card has the appropriate size: <input type="checkbox" id="myCheck" onclick="checkResize()"></p>
+
+    <div class="textContent">
+
+        <div id = "rect">CREDIT CARD</div>
+        
+        </div>
+
+        <script>
+
+            let widths;
+            let heights = [];
+            var keepResizing = true;
+
+            function checkResize() {
+                // Get the checkbox
+                var checkBox = document.getElementById("myCheck");
+                console.log("checkResize1")
+                
+                // If the checkbox is checked, allow resize
+                if (checkBox.checked == true){
+                    document.getElementById("rect").style.resize = "none";
+                    console.log(document.getElementById("rect").style.width);
+                    console.log(document.getElementById("rect").style.height);
+                    console.log("checkResize2")
+                    confirmation();
+
+                } else {
+                    if (keepResizing == true){document.getElementById("rect").style.resize = "both";}
+                    
+                }
+            } 
+
+            function confirmation() {
+                if (confirm("Are you sure about this?")) {
+                    keepResizing = false;
+                    //here then save the data and skip to the next step
+                } else {
+                    keepResizing = true;
+                }
+                    console.log(keepResizing)
+                ;
+            }
+            
+            </script>
+
+</body>
+</head>
+</html>
+
+
