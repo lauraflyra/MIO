@@ -1,6 +1,6 @@
 /* CSS defining the dots styles used in the ManualInhibitionOnline experiment */
 
-dot {
+.dot {
     position:absolute;
     display: inline;
     top: 50%;
@@ -13,9 +13,10 @@ dot {
     -webkit-touch-callout: none; /* prevent marking on iOS Safari */
     -webkit-user-select: none; /* prevent marking on Safari */
     user-select: none;
+    --original-size-dva: 2;
 }
 
-InvisibleDot {
+.InvisibleDot {
     position:absolute;
     display: inline;
     top: 50%;
@@ -28,9 +29,10 @@ InvisibleDot {
     -webkit-touch-callout: none; /* prevent marking on iOS Safari */
     -webkit-user-select: none; /* prevent marking on Safari */
     user-select: none;
+    --original-size-dva: 12;
 }
 
-rectangleUp{
+.rectangleUp{
     position:absolute; 
     left:0; 
     top:0; 
@@ -42,7 +44,7 @@ rectangleUp{
     user-select: none;
 }
 
-rectangleDown{
+.rectangleDown{
     position:absolute; 
     left:0; 
     bottom:0; 
@@ -55,7 +57,7 @@ rectangleDown{
 
 }
 
-rectDot {
+.rectDot {
     position:absolute;
     display: inline;
     top: 50%;

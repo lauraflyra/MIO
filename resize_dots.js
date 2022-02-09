@@ -26,8 +26,8 @@ function cm2pix( height_card_pix, width_card_pix){
        //return: number of pixels in one centimeter of screen, 
                 //averaging with the linear transformation from both dimensions
 
-       let width_card_cm = 8.56;
-       let height_card_cm = 5.398;
+       let width_card_cm = 8.56; //cm
+       let height_card_cm = 5.398; //cm
        let cm2pix_from_width = width_card_pix/width_card_cm;
        let cm2pix_from_height = height_card_pix/height_card_cm;
    
@@ -54,3 +54,5 @@ function dva2pix(size_dva, view_dist_cm, cm_pix){
     return size_pix; 
 
 }
+
+

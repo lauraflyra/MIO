@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+
+    <head>
+        <style>
+        .dot {
+            position:absolute;
+            display: inline;
+            top: 50%;
+            height: 50px;
+            width: 50px;
+            background-color: #000000;
+            border-radius: 50%;
+            margin-top: -25px;
+            margin-left: 25px;
+            -webkit-touch-callout: none; /* prevent marking on iOS Safari */
+            -webkit-user-select: none; /* prevent marking on Safari */
+            user-select: none;
+            --originalSizeDva: 2;
+        }
+        </style>   
+        <script src="resize_dots.js"></script>
+        <meta name="viewport" content="width=device-width">
+
+    </head>
+    <body>
+        <div id = 'centralPointDiv' class=dot style ='transform: translate(200px);'></div>
+        <div id = 'centralPointDiv' class=dot></div>
+        <button onclick="myFunction()">Resize Elements</button>
+
+        <script>
+            let toy_distance = 100.3; //cm
+            let toy_width = 595; //px
+            let toy_height = 359; //px
+
+            let new_cm_pix = cm2pix(toy_height, toy_width);
+
+            let get_dot = document.getElementsByClassName("dot")[0];
+            let original_size_dva = getComputedStyle(get_dot).getPropertyValue("--originalSizeDva");
+            let new_size_pix = dva2pix(original_size_dva, toy_distance, new_cm_pix);  
+        
+
+            function myFunction() {
+              var x = document.getElementsByClassName("dot");
+              for (var i = 0; i < x.length; i++) {
+                x[i].setAttribute("style","width:"+String(new_size_pix)+"px; height:"+String(new_size_pix)+"px");
+              }
+            }
+            </script>
+
+    </body>   
+
+</html>
